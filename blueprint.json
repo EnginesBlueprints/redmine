@@ -2,10 +2,10 @@
   "schema": {
     "type": "app_blueprint",
     "version": {
-      "major": 1,
-      "minor": 0
+      "major": 0,
+      "minor": 1
     },
-    "origin": "Engines Developer Studio 1.0"
+    "origin": "Engines Developer Studio 0.2"
   },
   "metadata": {
     "blueprint": {
@@ -14,76 +14,56 @@
         "minor": 1,
         "level": "rc",
         "patch": 0
-      },
-      "timestamp": null
+      }
     },
     "software": {
       "display": {
         "title": "Redmine Project Management",
         "label": "redmine",
-        "version": "",
-        "description": "Redmine is a flexible project management web application written using Ruby on Rails framework. ",
-        "url": ""
+        "description": "Redmine is a flexible project management web application written using Ruby on Rails framework. "
       },
       "license": {
         "label": "GNU GENERAL PUBLIC LICENSE V3",
         "url": "http://www.gnu.org/copyleft/gpl.html"
       }
-    }
+    },
+    "timestamp": "2018-05-07T19:27:06+10:00"
   },
   "software": {
     "base": {
       "name": "redmine",
       "framework": "rails4",
-      "memory": {
-        "required": "260",
-        "recommended": "360"
-      },
-      "http_protocol": "https_only",
-      "framework_port_override": "",
       "deployment_type": "web",
-      "web_root_directory": "",
-      "continuous_deployment": false,
-      "install_form_comment": "",
-      "first_run_url": "",
+      "http_protocol": "https_only",
+      "memory": {
+        "required": 260,
+        "recommended": 360
+      },
       "installation_report": "Goto _Engines_Builder(http_protocol)://_Engines_Builder(fqdn)/ \r\nLogin with \r\nuser:admin\r\npassword:admin\r\n\r\nChange admin's password and keep a record these credentials are not saved by Engines"
     },
-    "ports": [
-
-    ],
     "scripts": {
       "start": {
-        "language": "sh",
-        "content": ""
+        "language": "sh"
       },
       "install": {
-        "language": "sh",
-        "content": ""
+        "language": "sh"
       },
       "post_install": {
-        "language": "sh",
-        "content": ""
+        "language": "sh"
       },
       "shutdown": {
-        "language": "sh",
-        "content": ""
+        "language": "sh"
       }
     },
-    "external_repositories": [
-
-    ],
     "system_packages": [
       {
-        "package": "imagemagick",
-        "version": ""
+        "package": "imagemagick"
       },
       {
-        "package": "libmagickwand-dev",
-        "version": ""
+        "package": "libmagickwand-dev"
       },
       {
-        "package": "git",
-        "version": ""
+        "package": "git"
       }
     ],
     "installed_packages": [
@@ -95,27 +75,19 @@
         "path_to_extracted": "redmine"
       }
     ],
-    "required_modules": [
-
-    ],
     "service_configurations": [
       {
         "publisher_namespace": "EnginesSystem",
         "type_path": "database/sql/mysql",
         "variables": {
-          "name": "_Engines_Builder(engine_name)",
-          "database_host": "_Engines_System(mysql_host)",
           "database_name": "_Engines_Builder(engine_name)",
+          "database_host": "_Engines_System(mysql_host)",
           "db_username": "_Engines_Builder(engine_name)",
           "db_password": "_Engines_System(random(10))",
-          "db_flavor": "mysql2",
           "collation": "utf8_general_ci",
           "full_access": "0"
         }
       }
-    ],
-    "environment_variables": [
-
     ],
     "template_files": [
       {
@@ -124,64 +96,24 @@
         "content": "production:\r\n default_url_options:\r\n  host: _Engines_Builder(fqdn)\r\n email_delivery:\r\n  delivery_method: :smtp\r\n  smtp_settings:\r\n   address: _Engines_System(smtp_host)\r\n   port: 25\r\n   domain: _Engines_System(default_domain)\r\n   enable_starttls_auto : false\r\n   attachments_storage_path: /tmp"
       }
     ],
-    "replacement_strings": [
-
-    ],
     "database_seed": {
-      "language": "text",
-      "content": "",
-      "script": false
+      "language": "text"
     },
-    "file_write_permissions": [
-
-    ],
-    "persistent_directories": [
-
-    ],
-    "persistent_files": [
-
-    ],
-    "components": {
-      "sources": [
-
-      ],
-      "path": "",
-      "extract": false
-    },
-    "workers": {
-      "blocking": "",
-      "commands": [
-
+    "framework_specific": {
+      "rake_tasks": [
+        {
+          "action": "db:migrate",
+          "always_run": true
+        },
+        {
+          "action": "assets:precompile",
+          "always_run": true
+        },
+        {
+          "action": "generate_secret_token",
+          "always_run": true
+        }
       ]
-    },
-    "rake_tasks": [
-      {
-        "action": "db:migrate",
-        "always_run": true
-      },
-      {
-        "action": "assets:precompile",
-        "always_run": true
-      },
-      {
-        "action": "generate_secret_token",
-        "always_run": true
-      }
-    ],
-    "custom_php_inis": [
-
-    ],
-    "apache_htaccess_files": [
-
-    ],
-    "apache_httpd_configurations": [
-
-    ],
-    "actionators": [
-
-    ],
-    "schedules": [
-
-    ]
+    }
   }
 }
