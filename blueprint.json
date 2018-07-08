@@ -27,12 +27,12 @@
         "url": "http://www.gnu.org/copyleft/gpl.html"
       }
     },
-    "timestamp": "2018-05-07T19:27:06+10:00"
+    "timestamp": "2018-07-09T07:45:04+10:00"
   },
   "software": {
     "base": {
       "name": "redmine",
-      "framework": "rails4",
+      "framework": "rails5",
       "deployment_type": "web",
       "http_protocol": "https_only",
       "memory": {
