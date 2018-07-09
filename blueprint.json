@@ -27,7 +27,7 @@
         "url": "http://www.gnu.org/copyleft/gpl.html"
       }
     },
-    "timestamp": "2018-07-09T08:05:22+10:00"
+    "timestamp": "2018-07-10T09:17:49+10:00"
   },
   "software": {
     "base": {
@@ -67,6 +67,9 @@
       },
       {
         "package": "libxml2"
+      },
+      {
+        "package": "libxml2-dev"
       }
     ],
     "installed_packages": [
