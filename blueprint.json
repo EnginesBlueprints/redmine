@@ -27,7 +27,7 @@
         "url": "http://www.gnu.org/copyleft/gpl.html"
       }
     },
-    "timestamp": "2019-05-10T15:17:21+10:00"
+    "timestamp": "2019-05-10T16:22:37+10:00"
   },
   "software": {
     "base": {
@@ -106,13 +106,13 @@
       },
       {
         "publisher_namespace": "EnginesSystem",
-        "type_path": "ldap",
+        "type_path": "ldap_group",
         "variables": {
           "type": "group",
           "cn": "_Engines_Builder(engine_name)",
           "read_access": "all",
           "write_access": "none",
-          "service_name": "_Engines_Field(cn)__Engine_Fields(type)"
+          "service_name": "group_Engines_Field(cn)"
         }
       }
     ],
