@@ -27,7 +27,7 @@
         "url": "http://www.gnu.org/copyleft/gpl.html"
       }
     },
-    "timestamp": "2019-05-10T16:22:37+10:00"
+    "timestamp": "2019-09-04T18:37:40+10:00"
   },
   "software": {
     "base": {
@@ -101,7 +101,8 @@
           "access_dn": "uid=_Engines_Builder(engine_name),ou=hosts,ou=Engines,dc=engines,dc=internal_Engines_Builder(ctype)",
           "ldap_password": "_Engines_System(random(8))",
           "service_name": "ldap_access",
-          "type": "access"
+          "type": "access",
+          "group_membership": null
         }
       },
       {
@@ -113,6 +114,20 @@
           "read_access": "all",
           "write_access": "none",
           "service_name": "group_Engines_Field(cn)"
+        }
+      },
+      {
+        "publisher_namespace": "EnginesSystem",
+        "type_path": "filesystem/local/filesystem",
+        "variables": {
+          "service_name": "_Engines_Builder(engine_name)",
+          "volume_src": "",
+          "engine_path": "/home/fs/repositories/",
+          "permissions": "rw",
+          "user": "_Engines_Builder(cont_user_id)",
+          "group": "_Engines_Builder(data_gid)",
+          "fw_user": "_Engines_Builder(cont_user_id)",
+          "exclude_from_backup": "false"
         }
       }
     ],
@@ -126,6 +141,28 @@
     "database_seed": {
       "language": "text"
     },
+    "actionators": [
+      {
+        "name": "add_git_repo",
+        "label": "Clone Git Repo",
+        "return_type": "none",
+        "variables": [
+          {
+            "name": "uri",
+            "mandatory": true,
+            "input": {
+              "type": "string",
+              "label": "Git repo ",
+              "title": "https://host/repo/name.git"
+            }
+          }
+        ],
+        "script": {
+          "language": "sh",
+          "content": "#!/bin/sh\r\n\r\ncd /home/fs/repositories/\r\ngit clone $uri --bare"
+        }
+      }
+    ],
     "framework_specific": {
       "rake_tasks": [
         {
