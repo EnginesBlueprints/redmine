@@ -27,7 +27,7 @@
         "url": "http://www.gnu.org/copyleft/gpl.html"
       }
     },
-    "timestamp": "2019-09-04T18:37:40+10:00"
+    "timestamp": "2020-02-21T12:45:34+11:00"
   },
   "software": {
     "base": {
@@ -145,7 +145,7 @@
       {
         "name": "add_git_repo",
         "label": "Clone Git Repo",
-        "return_type": "none",
+        "return_type": "plain_text",
         "variables": [
           {
             "name": "uri",
@@ -159,7 +159,16 @@
         ],
         "script": {
           "language": "sh",
-          "content": "#!/bin/sh\r\n\r\ncd /home/fs/repositories/\r\ngit clone $uri --bare"
+          "content": "#!/bin/sh\r\n\r\ncd /home/fs/repositories/\r\ngit clone $uri --bare\r\n\r\nrepo_name=`basename $uri`\r\n\r\necho The path to the repo is 'pwd'/$repo_name"
+        }
+      },
+      {
+        "name": "list_repos",
+        "label": "List Repos",
+        "return_type": "plain_text",
+        "script": {
+          "language": "sh",
+          "content": "#!/bin/sh\r\n\r\ncd /home/fs/repositories/\r\ndirs =` ls `\r\n\r\nfor repo in $dirs\r\n do\r\n   echo `pwd`/$repo\r\ndone"
         }
       }
     ],
@@ -167,10 +176,6 @@
       "rake_tasks": [
         {
           "action": "db:migrate",
-          "always_run": true
-        },
-        {
-          "action": "assets:precompile",
           "always_run": true
         },
         {
